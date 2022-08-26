@@ -1,8 +1,7 @@
-package baekjoon.step._10;
+package baekjoon.step._10_done;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Problem2231 {
     private static final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
