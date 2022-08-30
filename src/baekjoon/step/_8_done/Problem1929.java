@@ -14,6 +14,7 @@ public class Problem1929 {
         }
     }
 
+    // 소수
     public static int primeNumber(int num){
         if(num < 2) return 0;
         else if(num == 2) return 1;
