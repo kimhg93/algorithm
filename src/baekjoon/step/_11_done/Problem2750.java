@@ -1,4 +1,4 @@
-package baekjoon.step._11;
+package baekjoon.step._11_done;
 
 import java.io.IOException;
 import java.util.Arrays;

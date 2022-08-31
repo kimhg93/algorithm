@@ -1,8 +1,7 @@
-package baekjoon.step._11;
+package baekjoon.step._11_done;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 // 카운팅정렬
 public class Problem10989 {
