@@ -8,13 +8,12 @@ public class Problem10872 {
     private static final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws IOException {
         int n = Integer.parseInt(r.readLine());
-        if(n == 0) System.out.println(0);
-        else System.out.println(pac(n, 1));
+        if(n == 0) System.out.println(1);
+        else System.out.println(fac(n));
     }
 
-    public static int pac(int n, int m){
-        if(n == 1) return m;
-        m = m * n;
-        return pac(n-1, m);
+    public static int fac(int n){
+        if(n == 1) return n;
+        return n * fac(n-1);
     }
 }
