@@ -1,24 +1,20 @@
 package baekjoon.step._9;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
 public class Problem10872 {
+    private static final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        long pac = 1;
-        for(int i=1; i<=a; i++){
-            pac = pac*i;
-        }
-        int cnt = 0;
-        String c = Long.toString(pac);
-        String[] ar = new String[c.length()];
-        ar = c.split("");
-        for(int i=ar.length-1; i>=0; i--){
-            if(ar[i].equals("0")) cnt++;
-            else if(ar[i].equals("0")==false) break;
-        }
-        System.out.println(pac);
+        int n = Integer.parseInt(r.readLine());
+        if(n == 0) System.out.println(0);
+        else System.out.println(pac(n, 1));
+    }
+
+    public static int pac(int n, int m){
+        if(n == 1) return m;
+        m = m * n;
+        return pac(n-1, m);
     }
 }
