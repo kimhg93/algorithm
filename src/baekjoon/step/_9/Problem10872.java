@@ -10,6 +10,7 @@ public class Problem10872 {
         int n = Integer.parseInt(r.readLine());
         if(n == 0) System.out.println(1);
         else System.out.println(fac(n));
+
     }
 
     public static int fac(int n){
