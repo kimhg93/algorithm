@@ -6,27 +6,12 @@ import java.io.InputStreamReader;
 public class Problem10870 {
     private static final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 
-    private static int bn = 0;
-    private static int an = 1;
-
     public static void main(String[] args) throws Exception{
-        int cnt = Integer.parseInt(r.readLine());
-        fibonacci(cnt-1);
+        System.out.println(fibonacci( Integer.parseInt(r.readLine())));
     }
 
-    public static void fibonacci(int cnt){
-        if(cnt > 0) {
-            int temp = 0;
-            temp = bn;
-            bn = an;
-            an = temp+bn;
-            cnt--;
-            fibonacci(cnt);
-        } else if(cnt < 0){
-            System.out.println(bn);
-        } else {
-            System.out.println(an);
-        }
-
+    public static int fibonacci(int n){
+        if(n < 2) return n;
+        return fibonacci(n-1) + fibonacci(n-2);
     }
 }
