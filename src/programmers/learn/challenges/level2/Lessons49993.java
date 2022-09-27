@@ -23,14 +23,11 @@ public class Lessons49993 {
 
     public static int solution(String skill, String[] skill_trees) {
         int answer = 0;
-
         for(int i=0; i<skill_trees.length; i++){
             StringBuilder sb = new StringBuilder();
             char[] ar = skill_trees[i].toCharArray();
             for(int j=0; j<ar.length; j++){
-                if(skill.indexOf(ar[j]) > -1){
-                    sb.append(ar[j]);
-                }
+                if(skill.indexOf(ar[j]) > -1) sb.append(ar[j]);
             }
             if(skill.indexOf(sb.toString()) == 0) answer++;
         }
