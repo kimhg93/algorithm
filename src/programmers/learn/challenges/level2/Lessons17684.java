@@ -23,34 +23,28 @@ public class Lessons17684 {
     public static int[] solution(String msg) {
         List<Integer> list = new ArrayList<>();
         Map<String, Integer> dic = new HashMap<>();
-        int last = 26;
 
         for(int i=65; i<=90; i++){
             dic.put(Character.toString((char) i), i-64);
         }
 
+        int last = dic.size();
+
         for(int i=0; i<msg.length(); i++){
-            for(int j=msg.length(); j>=i; j--){
-                if(null != dic.get(msg.substring(i,j))){
-                    list.add(dic.get(msg.substring(i,j)));
+            for(int j=msg.length(); j>=0; j--){
+                if(null != dic.get(msg.substring(0,j))){
+                    list.add(dic.get(msg.substring(0,j)));
                     if(j < msg.length()){
                         last += 1;
-                        dic.put(msg.substring(i,j+1), last);
+                        dic.put(msg.substring(0,j+1), last);
                     }
                     msg = msg.substring(j);
-                    i = -1;
                     break;
                 }
             }
         }
 
-
-        int[] answer = new int[list.size()];
-        for(int i=0; i<list.size(); i++){
-            answer[i] = list.get(i);
-        }
-
-        return answer;
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
     
 }

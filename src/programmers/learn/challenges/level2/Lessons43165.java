@@ -24,8 +24,8 @@ public class Lessons43165 {
 
     public static int fn(int[] arr, int t, int n, int i){
         if(i==arr.length) return n==t?1:0;
-        return fn(arr, t, i+1, n+arr[i]) +
-                fn(arr, t, i+1, n-arr[i]);
+        return fn(arr, t, n+arr[i], i+1) +
+                fn(arr, t, n-arr[i], i+1);
     }
 
 }
