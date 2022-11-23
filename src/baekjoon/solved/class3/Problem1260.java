@@ -4,6 +4,15 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/*
+5 5 1
+1 3
+1 4
+4 5
+4 3
+3 2
+
+ */
 public class Problem1260 {
     private static final BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
     private static final StringBuilder sb = new StringBuilder();
@@ -14,7 +23,7 @@ public class Problem1260 {
         int m = Integer.parseInt(st.nextToken());
         int start = Integer.parseInt(st.nextToken());
 
-        ArrayList<Integer>[] arr = new ArrayList[n+1];
+        List<Integer>[] arr = new ArrayList[n+1];
 
         for(int i=1; i<=n; i++){
             arr[i] = new ArrayList<>();
@@ -30,13 +39,37 @@ public class Problem1260 {
             Collections.sort(arr[B]);
         }
 
+        for(int i=1; i<=n; i++){
+            System.err.println(arr[i].toString());
+        }
+
         // dfs
         DFS(n, start, arr);
         // bfs
         BFS(n, start, arr);
     }
 
-    public static void BFS(int n, int start, ArrayList<Integer>[] arr){
+    public static void DFS(int n, int start, List<Integer>[] arr){
+        Stack<Integer> st = new Stack();
+        boolean[] visit = new boolean[n+1];
+        sb.setLength(0);
+        st.push(start);
+        // 1
+        while(!st.isEmpty()){
+            int num = st.pop();
+            if(!visit[num]){
+                sb.append(num).append(" ");
+                visit[num] = true;
+                for(int i=arr[num].size()-1; i>=0; i--){ // 정렬되어 있어 거꾸로 순회(LIFO 이므로 큰거부터)
+                    int next = arr[num].get(i);
+                    if(!visit[next]) st.push(next);
+                }
+            }
+        }
+        System.out.println(sb);
+    }
+
+    public static void BFS(int n, int start, List<Integer>[] arr){
         Queue<Integer> q = new LinkedList<>();
         boolean[] visit = new boolean[n+1];
         sb.setLength(0);
@@ -56,25 +89,7 @@ public class Problem1260 {
         }
         System.out.println(sb);
     }
-    public static void DFS(int n, int start, ArrayList<Integer>[] arr){
-        Stack<Integer> st = new Stack();
-        boolean[] visit = new boolean[n+1];
-        sb.setLength(0);
-        st.push(start);
 
-        while(!st.isEmpty()){
-            int num = st.pop();
-            if(!visit[num]){
-                sb.append(num).append(" ");
-                visit[num] = true;
-                for(int i=arr[num].size()-1; i>=0; i--){ // 정렬되어 있어 거꾸로 순회
-                    int next = arr[num].get(i);
-                    if(!visit[next]) st.push(next);
-                }
-            }
-        }
-        System.out.println(sb);
-    }
 }
 /*
 
