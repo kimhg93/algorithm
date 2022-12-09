@@ -9,16 +9,33 @@ public class Problem9935 {
 
     public static void main(String[] args) throws Exception {
         String str = r.readLine();
-        String c = r.readLine();
-        int len = c.length();
+        String remove = r.readLine();
+
+        int len = remove.length();
+        char[] arr = new char[str.length()];
+
+        int cnt = 0;
         for(int i=0; i<str.length(); i++){
-            sb.append(str.charAt(i));
-            int idx = sb.indexOf(c);
-            if(idx > -1) sb.delete(idx, idx+len);
+            arr[cnt] = str.charAt(i);
+            cnt++;
+            if(cnt >= len){
+                boolean find = true;
+                for(int j=0; j<len; j++){
+                    if(arr[cnt-len+j] != remove.charAt(j)){
+                        find = false;
+                        break;
+                    }
+                }
+                if(find) cnt -= len;
+            }
+        }
+
+        for(int i=0; i<cnt; i++) {
+            sb.append(arr[i]);
         }
 
         if(sb.length() == 0) sb.append("FRULA");
-        System.err.println(sb);
+        System.out.println(sb);
     }
 }
 
