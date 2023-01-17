@@ -11,23 +11,22 @@ public class Problem2960 {
     public static void main(String[] args) throws Exception{
         StringTokenizer st = new StringTokenizer(r.readLine());
         int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-        int[] arr = new int[n+1];
-        List<Integer> list = new ArrayList<>();
-
-        int idx = 2;
-        int d = idx;
-        while(idx <= n){
-            if(d <= n){
-                if(d==idx && arr[d] != 1) list.add(d);
-                else if(d!=idx && arr[d] != 1) arr[d] = 1;
-                d += idx;
-            } else {
-                idx++;
-                d = idx;
+        int[] visit = new int[n+1];
+        int cnt = 0;
+        for(int i=2; i<=n; i++){
+            for(int j=i; j<=n; j+=i){
+                if(visit[j] != 1){
+                    visit[j] = 1;
+                    cnt++;
+                }
+                if(cnt == m) {
+                    System.out.println(j);
+                    return;
+                }
             }
         }
-        System.err.println(list.toString());
     }
 }
 
