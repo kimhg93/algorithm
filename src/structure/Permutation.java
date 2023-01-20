@@ -58,7 +58,7 @@ public class Permutation {
             if(visit[i] != true) {
                 visit[i] = true;
                 re[d] = arr[i];
-                per2(arr, re, visit, d + 1);
+                per2(arr, re, visit, d+1);
                 visit[i] = false;
             }
         }
