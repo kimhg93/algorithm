@@ -16,55 +16,64 @@ public class Problem7576 {
         int m = Integer.parseInt(st.nextToken());
 
         int[][] arr = new int[m][n];
-
+        List<int[]> list = new ArrayList<>();
+        int z = 0;
         for(int i=0; i<m; i++){
             st = new StringTokenizer(r.readLine());
             for(int j=0; j<n; j++){
-                arr[i][j] = Integer.parseInt(st.nextToken());
+                int num = Integer.parseInt(st.nextToken());
+                arr[i][j] = num;
+                if(num == 1) {
+                    int[] post = {i,j};
+                    list.add(post);
+                } else if(num == 0)  z++;
             }
+        }
+
+        if(z == 0) {
+            System.out.println(0);
+            return;
         }
 
         int cnt = 0;
+        int bf = 0;
+        while(z > 0){
+            int size = list.size();
+            if(bf == size) break;
+            for(int i=bf; i<size; i++){
+                int x = list.get(i)[0];
+                int y = list.get(i)[1];
+                int nx = x;
+                int ny = y;
+                for(int j=1; j<=4; j++){
+                    if(j==1) nx = x-1;
+                    else if(j==2) nx = x+1;
+                    else if(j==3) ny = y-1;
+                    else if(j==4) ny = y+1;
 
-        while(true){
-            int z = 0;
-            List<String> list = new ArrayList<>();
-            for(int i=0; i<m; i++){
-                for(int j=0; j<n; j++){
-                    if(arr[i][j] == 1 && !list.contains(i+""+j)){
-                        if(i-1 >= 0 && arr[i-1][j] == 0){
-                            arr[i-1][j] = 1;
-                            list.add((i-1)+""+j);
+                    if(nx >= 0 && ny >= 0 && nx < m && ny < n){
+                        if(arr[nx][ny] == 0){
+                            arr[nx][ny] = 1;
+                            int[] pos = {nx, ny};
+                            list.add(pos);
+                            z--;
                         }
-                        if(i+1 < m && arr[i+1][j] == 0){
-                            arr[i+1][j] = 1;
-                            list.add((i+1)+""+j);
-                        }
-                        if(j-1 >= 0 && arr[i][j-1] == 0){
-                            arr[i][j-1] = 1;
-                            list.add(i+""+(j-1));
-                        }
-                        if(j+1 < n && arr[i][j+1] == 0){
-                            arr[i][j+1] = 1;
-                            list.add(i+""+(j+1));
-                        }
-                    } else if(arr[i][j] == 0) z++;
+                    }
+                    nx = x;
+                    ny = y;
                 }
             }
+            bf = size;
             cnt++;
-            if(z == 0) break;
-            if(cnt > n*m) {
-                cnt = 0;
-                break;
-            }
+            if(z==0) break;
         }
 
-        System.out.println(cnt-1);
+        if(z > 0) System.out.println(-1);
+        else System.out.println(cnt);
     }
 }
 
 /*
-
 토마토
 
 시간 제한	메모리 제한	제출	정답	맞힌 사람	정답 비율
