@@ -6,45 +6,37 @@ fun main() = with(System.`in`.bufferedReader()) {
     var st = StringTokenizer(readLine())
     val h = st.nextToken().toInt()
     val w = st.nextToken().toInt()
-    val arr = Array(h){Array(w){0}}
+    val arr = Array(h){ IntArray(w) }
 
     st = StringTokenizer(readLine())
 
-    for(i in 0 until w){
+    repeat(w){
         val n = st.nextToken().toInt()
-        for(j in 0 until n){
-            arr[j][i] = 1;
-        }
-    }
-
-    for(i in 0 until h){
-        var b = -1;
-        for(j in 0 until w){
-            if(arr[i][j]==1){
-                if(b==-1 && j > 0) remove(arr, i, 0, j-1)
-                b = j
-            }
-            if(j==w-1 && b!=j) remove(arr, i, b+1, j)
-        }
+        repeat(n){ j -> arr[j][it] = 1 }
     }
 
     var cnt = 0
-    for(i in 0 until h){
-        //println(arr[i].contentToString())
-        for(j in 0 until w){
-            if(arr[i][j] == 0) cnt++;
+
+    repeat(h){
+        var b = -1
+        repeat(w){ j ->
+            if(arr[it][j]==1){
+                if(b==-1 && j>0) remove(arr, it, 0, j-1)
+                b = j
+            }
+            if(j==w-1 && b!=j) remove(arr, it, b+1, j)
         }
+        cnt += arr[it].count{ e -> e == 0 }
     }
 
     println(cnt)
 
 }
 
-fun remove(arr: Array<Array<Int>>, h: Int, s: Int, e: Int): Array<Array<Int>> {
+fun remove(arr: Array<IntArray>, h: Int, s: Int, e: Int) {
     for(i in s..e){
         arr[h][i] = 2
     }
-    return arr
 }
 
 /*
