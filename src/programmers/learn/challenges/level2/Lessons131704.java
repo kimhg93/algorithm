@@ -1,7 +1,6 @@
 package programmers.learn.challenges.level2;
 
 import java.util.Stack;
-import java.util.stream.IntStream;
 
 /**
  * 코딩테스트 연습
@@ -9,28 +8,6 @@ import java.util.stream.IntStream;
  * 택배상자
  */
 public class Lessons131704 {
-
-    /*
-    4 6 5 3 1 2
-
-
-    st1 = 4 5 6
-    st2 = 3 2 1
-
-    st1 = 5 6
-    st2 = 3 2 1
-
-    st1 = 6
-    st2 = 5 3 2 1
-
-    st1 =
-    st2 = 5 3 2 1
-
-    st2 = 3 2 1
-
-
-
-     */
 
     public static void main(String[] args) throws Exception {
         int[] arr = {5, 4, 3, 2, 1};
